@@ -10,7 +10,6 @@
 - Modern http requests via <a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener">axios</a>
 
 ## First Time setup
-
 ### Required
 - [yarn](https://yarnpkg.com/)
 
