@@ -5,7 +5,7 @@
 - **True** Hot Middle Reload [HMR] (No need to restart scripts to see your changes)
 - Page Routing via <a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a>
 - State Management via <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-- Web Bundled <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a>
+- Minification and Bundled via <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a>
 - ES6 Ready via <a href="https://babeljs.io/" target="_blank" rel="noopener">babel</a>
 - Modern http requests via <a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener">axios</a>
 
