@@ -13,11 +13,11 @@ client_script {
 }
 
 ui_page {
-    "ui/shim.html"
+    "ui/index.html"
 }
 
 files {
-    "ui/shim.html",
+    "ui/index.html",
     "ui/js/*.*",
     "ui/css/*.*"
 }
