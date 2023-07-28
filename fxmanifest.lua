@@ -18,8 +18,8 @@ ui_page {
 
 files {
     "ui/shim.html",
-    "ui/dist/js/*.*",
-    "ui/dist/css/*.*"
+    "ui/js/*.*",
+    "ui/css/*.*"
 }
 
 version '1.0.0'
