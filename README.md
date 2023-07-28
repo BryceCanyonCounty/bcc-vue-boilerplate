@@ -39,8 +39,13 @@ yarn run serve
 ```
 
 ### Run in Production (compiles and minifies for production)
+- Prior to pushing to your repo
+- Run build to update the FX Manifest for produciton
+```bash
+yarn build
+```
 - Open release.yml (ui/.github/workflows)
-- Modify line 26 (files) to include all of your static files.
+- Modify line 26 (files) to include all of your static files
     - folders are denoted by its name without an extension
     - include all files you need in the release (images for inventory etc.)
 - Rename line 28 (dest) to your scripts name.zip
