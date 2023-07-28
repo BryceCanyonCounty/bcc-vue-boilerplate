@@ -1,54 +1,54 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
+
+const devmode = ref(false);
+const visible = ref(false);
+
+onMounted(() => {
+  window.addEventListener("message", onMessage);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("message", onMessage);
+});
+
+const onMessage = (event) => {
+  switch (event.data.type) {
+    case "toggle":
+      visible.value = event.data.visible;
+      api.post("updatestate", {
+        state: this.visible
+      }).catch(e => {
+        console.log(e.message)
+      });
+      break;
+    default:
+      break;
+  }
+}
+
+const closeApp = () => {
+  visible.value = false
+  api.post("updatestate", {
+    state: visible.value
+  }).catch(e => {
+    console.log(e.message)
+  });
+}
+</script>
+
 <template>
   <div id="content" v-if="visible || devmode">
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-      
+
       <div id="close" @click="closeApp">Close</div>
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
-<script>
-  import api from "./api";
 
-  export default {
-    name: 'DefaultLayout',
-    data() {
-      return {
-        devmode: false,
-        visible: false
-      }
-    },
-    mounted() {
-      window.addEventListener("message", this.onMessage);
-    },
-    methods: {
-      onMessage(event) {
-        switch(event.data.type) {
-          case "toggle":
-            this.visible = event.data.visible;
-            api.post("updatestate", {
-              state: this.visible
-            }).catch(e => {
-              console.log(e.message)
-            });
-            break;
-          default:
-            break;
-        }
-      },
-      closeApp() {
-        this.visible = false
-        api.post("updatestate", {
-          state: this.visible
-        }).catch(e => {
-          console.log(e.message)
-        });
-      }
-    }
-  }
-  </script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -69,6 +69,7 @@ ol {
 a {
   color: #42b983;
 }
+
 a:hover {
   color: #fff;
   cursor: pointer;
@@ -111,5 +112,4 @@ nav {
     cursor: pointer;
   }
 }
-
 </style>
