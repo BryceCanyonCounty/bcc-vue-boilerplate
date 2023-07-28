@@ -1,7 +1,10 @@
 <script setup>
-  const props = defineProps({
-    msg: String
-  })
+// To access props within the setup tag add const props = defineProps
+defineProps({
+  msg: String
+})
+// You can then access the props values like so
+// console.log(props.msg)
 </script>
 
 <template>
@@ -17,7 +20,8 @@
       <li>State Management via <a href="https://pinia.vuejs.org" target="_blank" rel="noopener">Pinia</a></li>
       <li>Web Bundled<a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a></li>
       <li>ES6 Ready via<a href="https://babeljs.io/" target="_blank" rel="noopener">babel</a></li>
-      <li>Expansive, modern http requests via <a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener">axios</a></li>
+      <li>Expansive, modern http requests via <a href="https://axios-http.com/docs/intro" target="_blank"
+          rel="noopener">axios</a></li>
       <li>Modern CSS Framework via <a href="https://tailwindcss.com/">Tailwind CSS</a></li>
       <li>Auto build releases via GitHub Actions (See Readme)</li>
     </ol>
@@ -26,7 +30,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  h3 {
-    margin: 40px 0 0;
-  }
+h3 {
+  margin: 40px 0 0;
+}
 </style>

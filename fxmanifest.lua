@@ -13,13 +13,13 @@ client_script {
 }
 
 ui_page {
-    "ui/shim.html"
+    "ui/index.html"
 }
 
 files {
-    "ui/shim.html",
-    "ui/dist/js/*.*",
-    "ui/dist/css/*.*"
+    "ui/index.html",
+    "ui/js/*.*",
+    "ui/css/*.*"
 }
 
 version '1.0.0'
