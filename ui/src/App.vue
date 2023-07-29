@@ -1,5 +1,7 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import api from "./api";
+import { ref, onMounted, onUnmounted } from "vue";
+import "@/assets/styles/main.css";
 
 const devmode = ref(false);
 const visible = ref(false);
@@ -16,100 +18,51 @@ const onMessage = (event) => {
   switch (event.data.type) {
     case "toggle":
       visible.value = event.data.visible;
-      api.post("updatestate", {
-        state: this.visible
-      }).catch(e => {
-        console.log(e.message)
-      });
+      api
+        .post("updatestate", {
+          state: visible.value,
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
       break;
     default:
       break;
   }
-}
+};
 
 const closeApp = () => {
-  visible.value = false
-  api.post("updatestate", {
-    state: visible.value
-  }).catch(e => {
-    console.log(e.message)
-  });
-}
+  visible.value = false;
+  api
+    .post("updatestate", {
+      state: visible.value,
+    })
+    .catch((e) => {
+      console.log(e.message);
+    });
+};
 </script>
 
 <template>
-  <div id="content" v-if="visible || devmode">
-    <nav>
+  <div
+    id="content"
+    class="relative bg-gray-900 left-0 right-0 mx-auto px-10"
+    v-if="visible || devmode"
+  >
+    <div class="absolute right-2 top-0 text-2xl text-white" @click="closeApp">
+      &times;
+    </div>
+    <nav class="w-full text-center text-white">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-
-      <div id="close" @click="closeApp">Close</div>
     </nav>
     <router-view />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #fff;
-}
-
-h3 {
-  margin: 40px 0 0;
-}
-
-ol {
-  text-align: left;
-}
-
-a {
-  color: #42b983;
-}
-
-a:hover {
-  color: #fff;
-  cursor: pointer;
-}
-
+<style>
 #content {
-  background-color: rgb(32, 32, 32);
-  border-radius: 6px;
-  max-width: 500px;
-  max-height: 800px;
-  padding: 10px;
-
-  position: absolute;
-  top: 20%;
-  left: 50%;
-
-  transform: translate(-50%, -20%);
-}
-
-#close {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #fff;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-
-  a:hover {
-    color: #42b983;
-    cursor: pointer;
-  }
+  width: 60vw;
+  height: 70vh;
 }
 </style>
