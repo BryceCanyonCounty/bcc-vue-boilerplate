@@ -85,7 +85,7 @@ yarn run build
 - Click on General
 - Under Workflow Permissions set to Read and Write access
 
-### Setting your release version
+#####  Setting your release version
 
 - Open the package.json file (ui/package.json)
   - This value is used as the release tag
