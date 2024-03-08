@@ -1,15 +1,31 @@
-var fs = require('fs')
+var fs = require('fs');
+
 fs.readFile('../fxmanifest.lua', 'utf8', function (err, data) {
     if (err) throw err;
 
+    console.info('Updating fxmanifest file...')
+
+    let expr = /files \{([^}]*)\}/g
+    let replace = 
+`files {
+    "ui/index.html",
+    "ui/js/*.*",
+    "ui/css/*.*",
+    "ui/fonts/*.*",
+    "ui/img/*.*"
+}`
+
     if (process.env.NODE_ENV === 'development') {
-        data = data.replaceAll("ui/index.html", "ui/shim.html")
-    } else {
-        data = data.replaceAll("ui/shim.html", "ui/index.html")
+        replace = 
+`files {
+    "ui/shim.html"
+}`
     }
+
+    data = data.replaceAll(expr, replace)
 
     fs.writeFile ('../fxmanifest.lua', data, function(err) {
         if (err) throw err;
-        console.log('fxmanifest file updated');
+        console.info('fxmanifest file updated!');
     });
 });
