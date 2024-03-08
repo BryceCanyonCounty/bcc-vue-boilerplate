@@ -1,9 +1,11 @@
 var fs = require('fs');
+var colors = require('colors');
+colors.enable()
 
 fs.readFile('../fxmanifest.lua', 'utf8', function (err, data) {
     if (err) throw err;
 
-    console.info('Updating fxmanifest file...')
+    console.info('>'.blue, 'Updating fxmanifest file...')
 
     let expr = /files \{([^}]*)\}/g
     let replace = 
@@ -26,6 +28,6 @@ fs.readFile('../fxmanifest.lua', 'utf8', function (err, data) {
 
     fs.writeFile ('../fxmanifest.lua', data, function(err) {
         if (err) throw err;
-        console.info('fxmanifest file updated!');
+        console.info('fxmanifest file updated!'.green);
     });
 });
