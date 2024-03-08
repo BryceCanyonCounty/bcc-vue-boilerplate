@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "NODE_ENV=development yarn run shim && vue-cli-service serve",
     "build": "NODE_ENV=production yarn run shim && vue-cli-service build",
-    "build:local": "NODE_ENV=local yarn run shim && vue-cli-service build && yarn run local",
+    "build:local": "NODE_ENV=local yarn run shim && vue-cli-service build && ZIP=true yarn run local",
+    "build:local:unzip": "NODE_ENV=local yarn run shim && vue-cli-service build && yarn run local",
     "lint": "vue-cli-service lint",
     "shim": "node build/fxupdate.js",
     "local": "node build/local.js"

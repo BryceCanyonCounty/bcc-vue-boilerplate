@@ -29,17 +29,25 @@ function zipDirectory(sourceDir, outFolder, outPath) {
         }
     })
     
-    console.info("Cloning UI build into release")
+    console.info("Cloning UI build into release");
     fs.cpSync('./dist', '../temp/ui', {recursive: true});
     
-    console.info("Zipping your release")
-    let name = path.basename(path.resolve('../'))
-    let time = Date.now()
-    await zipDirectory('../temp', `../releases/${version}`, `${name}.zip`)
+    let name = path.basename(path.resolve('../'));
+    let output_file = `releases/${version}/${name}`
+
+    console.log(process.env.ZIP)
+    if (process.env.ZIP === 'true') {
+        console.info("Zipping your release");
+        await zipDirectory('../temp', `../releases/${version}`, `${name}.zip`);
+        output_file = output_file+'.zip';
+    } else {
+        console.info("Creating your release");
+        fs.cpSync('../temp', `../${output_file}`, {recursive: true});
+    }
     
-    console.info("Cleaning up temp folder")
+    console.info("Cleaning up temp folder");
     fs.rmSync('../temp', {force: true, recursive: true});
     fs.rmSync('./dist', {force: true, recursive: true});
     
-    console.info(`Release is done! releases/${version}/${name}.zip`);
+    console.info(`Release is done! ${output_file}`);
 })()

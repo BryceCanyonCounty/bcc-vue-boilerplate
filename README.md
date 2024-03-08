@@ -47,13 +47,32 @@ yarn run serve
 
 ### Run in Production (compiles and minifies for production)
 
-- Prior to pushing to your repo
-- Run build to update the FX Manifest for produciton
+#### Local Build/Release
+
+- Run build:local to update the FX Manifest and build/zip your project for production release. 
+- The release version is determined by the version number within `/ui/package.json`
+- This will output your production build of the script as a .zip file within `/releases/version/yourscript.zip`
 
 ```bash
-yarn build
+yarn run build:local
 ```
 
+> or if you want to have the release build without being zipped, run
+
+```bash
+yarn run build:local:unzip
+```
+
+#### Github Auto Build/Release
+> This allows your project to automatically build and release your UI/project to a github release whenever someone pushes to your main branch (This is HIGHLY recommended for any open source scripts)
+
+- Prior to pushing to your repo
+- Run build to update the FX Manifest for production
+
+```bash
+yarn run build
+```
+##### Auto Build setup
 - Open release.yml (.github/workflows)
 - Modify line 26 (files) to include all of your static files
   - folders are denoted by its name without an extension
@@ -76,6 +95,6 @@ yarn build
 
 ### Lints and fixes files
 
-```
+```bash
 yarn run lint
 ```
