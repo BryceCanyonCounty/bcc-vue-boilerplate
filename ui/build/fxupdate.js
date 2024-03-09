@@ -17,13 +17,20 @@ fs.readFile('../fxmanifest.lua', 'utf8', function (err, data) {
     "ui/img/*.*"
 }`
 
+    let to_file = 'ui/shim.html';
+    let from_file = 'ui/index.html'
+
     if (process.env.NODE_ENV === 'development') {
         replace = 
 `files {
     "ui/shim.html"
 }`
+
+        to_file = 'ui/index.html';
+        from_file = 'ui/shim.html';
     }
 
+    data = data.replaceAll(to_file, from_file)
     data = data.replaceAll(expr, replace)
 
     fs.writeFile ('../fxmanifest.lua', data, function(err) {
