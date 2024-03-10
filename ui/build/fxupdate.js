@@ -1,5 +1,5 @@
-var fs = require('fs');
-var colors = require('colors');
+import fs from 'fs';
+import colors from 'colors';
 colors.enable()
 
 fs.readFile('../fxmanifest.lua', 'utf8', function (err, data) {
