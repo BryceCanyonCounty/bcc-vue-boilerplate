@@ -1,10 +1,9 @@
-var fs = require('fs');
-var path = require('path');
-var archiver = require('archiver');
-var colors = require('colors');
-colors.enable()
+import fs from 'fs';
+import path from 'path';
+import colors from 'colors';
+import archiver from 'archiver';
 
-var { version } = require('../package.json')
+colors.enable()
 
 function zipDirectory(sourceDir, outFolder, outPath) {
     const archive = archiver('zip', { zlib: { level: 9 }});
@@ -35,6 +34,8 @@ function zipDirectory(sourceDir, outFolder, outPath) {
     console.info(">".blue, "Cloning UI build into release...");
     fs.cpSync('./dist', '../temp/ui', {recursive: true});
     
+    let { version } = JSON.parse(fs.readFileSync('../ui/package.json'));
+
     let name = path.basename(path.resolve('../'));
     let output_file = `releases/${version}/${name}`
 

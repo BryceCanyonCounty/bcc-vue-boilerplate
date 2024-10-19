@@ -17,11 +17,8 @@ ui_page {
 }
 
 files {
-    "ui/index.html",
-    "ui/js/*.*",
-    "ui/css/*.*",
-    "ui/fonts/*.*",
-    "ui/img/*.*"
+    "ui/dist/index.html",
+    "ui/dist/**/*"
 }
 
 version '1.0.0'
